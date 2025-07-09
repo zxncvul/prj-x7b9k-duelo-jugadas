@@ -639,13 +639,12 @@ html.fade-out::before {
 }
 
 @media (max-width: 1000px) {
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
   #scale-wrapper {
-    transform: scale(calc(100vw / 800));
+    transform: scale(calc(100vw / 600)); /* ← ajusta aquí de 800 → 600 */
+    height: calc(700px * (100vw / 600)); /* ← cambia altura si hace falta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
+
