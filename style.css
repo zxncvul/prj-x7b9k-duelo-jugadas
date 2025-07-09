@@ -16,15 +16,20 @@ html, body {
   font-family: 'GohuMono', monospace;
   font-size: 14px;
   margin: 0;
-  padding: 2rem;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
 }
+
 
 /* === CONFIG PANEL === */
 #screen-config {
@@ -621,4 +626,26 @@ html.fade-out {
 
 html.fade-out::before {
   opacity: 1;
+}
+
+#scale-wrapper {
+  transform-origin: top left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #scale-wrapper {
+    transform: scale(calc(100vw / 800));
+  }
 }
