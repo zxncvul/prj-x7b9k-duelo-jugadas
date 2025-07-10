@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- Configurar como PWA para pantalla completa -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -14,11 +15,22 @@
 </head>
 <body>
 
+  <!-- Panel de configuración (inicialmente visible) -->
   <div id="scale-wrapper">
     <!-- Pantalla de duelo -->
     <div id="screen-duel" class="duel-screen">
       <div id="combo-global" class="combo-global"></div>
 
+  <!-- Pantalla de duelo -->
+  <div id="screen-duel" class="duel-screen">
+    <div id="combo-global" class="combo-global"></div>
+
+    <div class="poker-duel">
+      <div class="row">
+        <div id="villain-hand" class="hand"></div>
+      </div>
+      <div class="row">
+        <div id="duel-board" class="board"></div>
       <div class="poker-duel">
         <div class="row">
           <div id="villain-hand" class="hand"></div>
@@ -30,34 +42,71 @@
           <div id="hero-hand" class="hand"></div>
         </div>
       </div>
+      <div class="row">
+        <div id="hero-hand" class="hand"></div>
+      </div>
+    </div>
 
+    <!-- Control-bar alineada -->
+    <div id="bottom-controls" class="control-bar">
       <!-- Control-bar alineada -->
       <div id="bottom-controls" class="control-bar">
 
+      <!-- Fila de los ojitos -->
+      <div class="eyes-row">
+        <button class="reveal-btn" data-side="villain" onclick="revealBest('villain')">𓂀</button>
+        <div class="spacer"></div> <!-- espacio para centrar -->
+        <button class="reveal-btn" data-side="hero" onclick="revealBest('hero')">𓂀</button>
+      </div>
         <!-- Fila de los ojitos -->
         <div class="eyes-row">
           <button class="reveal-btn" data-side="villain" onclick="revealBest('villain')">𓂀</button>
-          <div class="spacer"></div>
+          <div class="spacer"></div> <!-- espacio para centrar -->
           <button class="reveal-btn" data-side="hero" onclick="revealBest('hero')">𓂀</button>
         </div>
 
-        <!-- Fila de botones OPP / SPLIT / HERO -->
+      <!-- Fila de botones OPP / SPLIT / HERO perfectamente alineados -->
+      <div class="buttons-row">
+        <button class="select-btn" onclick="guessWinner('villain')">OPP</button>
+        <button class="split-btn" onclick="guessWinner('split')">SPLIT</button>
+        <button class="select-btn" onclick="guessWinner('hero')">HERO</button>
+      </div>
+        <!-- Fila de botones OPP / SPLIT / HERO perfectamente alineados -->
         <div class="buttons-row">
           <button class="select-btn" onclick="guessWinner('villain')">OPP</button>
           <button class="split-btn" onclick="guessWinner('split')">SPLIT</button>
           <button class="select-btn" onclick="guessWinner('hero')">HERO</button>
         </div>
 
+    </div>
       </div>
 
+    <div id="screen-config"></div>
+  </div>
       <div id="screen-config"></div>
     </div> <!-- cierre #screen-duel -->
   </div> <!-- cierre #scale-wrapper -->
 
+ <script type="module">
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get('mode') || 'duel';
   <script type="module">
     const params = new URLSearchParams(window.location.search);
     const mode = params.get('mode') || 'duel';
 
+  if (mode === 'duel') {
+    import('./duel.js').then(m => {
+      window.generateDuel = m.generateDuel;
+      window.guessWinner  = m.guessWinner;
+      window.revealBest   = m.revealBest;
+      m.startDuelMode();
+    });
+  } else if (mode === 'ranking') {
+    import('./ranking.js').then(m => m.startRankingMode());
+  } else if (mode === 'jugadas') {
+    import('./identify.js').then(m => m.startIdentifyMode());
+  }
+</script>
     if (mode === 'duel') {
       import('./duel.js').then(m => {
         window.generateDuel = m.generateDuel;
@@ -70,18 +119,6 @@
     } else if (mode === 'jugadas') {
       import('./identify.js').then(m => m.startIdentifyMode());
     }
-  </script>
-
-  <!-- Escalado dinámico proporcional -->
-  <script>
-    const baseWidth = 500;
-    const wrapper = document.getElementById('scale-wrapper');
-    function updateScale() {
-      const scale = window.innerWidth / baseWidth;
-      wrapper.style.transform = `scale(${scale})`;
-    }
-    window.addEventListener('resize', updateScale);
-    window.addEventListener('load', updateScale);
   </script>
 
 </body>
