@@ -30,6 +30,30 @@ html, body {
   text-rendering: optimizeSpeed;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  color: #29a847;
+  font-family: 'GohuMono', monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+#scale-wrapper {
+  position: relative;
+  transform-origin: top left;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* === CONFIG PANEL === */
 #screen-config {
@@ -454,7 +478,7 @@ html, body {
 }
 
 .ranking-board .card {
-
+  
   height: 3.8rem;
 
    width: auto;             /* No uses 2.8rem fijo */
@@ -509,7 +533,7 @@ html, body {
 }
 .ranking-card.error {
   color: #ff2a2a !important;
-
+  
 }
 /* === IDENTIFY MODE === */
 
@@ -628,29 +652,20 @@ html.fade-out::before {
   opacity: 1;
 }
 
-#scale-wrapper {
-  transform-origin: top left;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
+
 
 @media (max-width: 1000px) {
-  html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
   #scale-wrapper {
-    transform: scale(calc(100vw / 800));
-    transform: scale(calc(100vw / 600)); /* ← ajusta aquí de 800 → 600 */
-    height: calc(700px * (100vw / 600)); /* ← cambia altura si hace falta */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transform: scale(calc(100vw / 500));
+    height: calc(700px * (100vw / 500)); /* Ajusta según tu contenido */
   }
 }
+
+
+@media (min-width: 800px) {
+  #scale-wrapper {
+    transform: none !important;
+  }
+}
+
+
