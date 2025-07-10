@@ -177,7 +177,7 @@ html, body {
 
 /* === BOTTOM CONTROLS LAYOUT === */
 #bottom-controls {
-  margin-top: 8rem; /* ajústalo si cambia el diseño */
+  margin-top: 6rem; /* ajústalo si cambia el diseño */
   flex-direction: column;
   gap: 3rem;
   align-items: center;
@@ -541,7 +541,7 @@ html, body {
 
 .identify-buttons {
   position: absolute;
-  top: 160%; /* debajo del board */
+  top: 260%; /* debajo del board */
    left: 50%;
   transform: translateX(-50%); /* ✔️ centrado absoluto */
   right: 0;
@@ -558,7 +558,7 @@ html, body {
   border-radius: 0;
   box-sizing: border-box;
 
-  width: 118%; /* ocupa el ancho del wrapper */
+  width: 128%; /* ocupa el ancho del wrapper */
   max-width: 50rem;;
 }
 
@@ -575,8 +575,8 @@ html, body {
   border: 1px solid #29a847;
   color: #29a847;
   font-family: 'GohuMono', monospace;
-  font-size: 12px;
-  padding: 0.26rem 0.4rem;
+  font-size: 14px;
+  padding: 0.6rem 0.4rem;
   border-radius: 3px;
   cursor: pointer;
   text-align: center;
