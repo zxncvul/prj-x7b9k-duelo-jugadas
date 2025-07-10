@@ -19,16 +19,21 @@ let currentWinner = null;
 export function startRankingMode() {
   const screen = document.getElementById('screen-duel');
   if (!screen) return;
-  import('./config.js').then(m => m.initConfig());
 
   screen.classList.remove('hidden');
   screen.classList.add('ranking-mode');
 
   document.getElementById('combo-global').textContent = '';
 
-  prepareUIRankingMode();
-  generateNewRankingDuel();
+  // ⏳ Primero espera a que initConfig() monte el DOM
+  import('./config.js').then(m => {
+    m.initConfig(); // monta el panel
+    // ✅ Luego desactiva todo lo que no se debe tocar
+    prepareUIRankingMode();
+    generateNewRankingDuel();
+  });
 }
+
 
 function prepareUIRankingMode() {
   // 🔒 Desactivar funcionalidad de botones reveal pero mantener visibles
@@ -40,44 +45,16 @@ function prepareUIRankingMode() {
 
   // ⚫️ Ocultar contenido de cartas de hands y board
   document.querySelectorAll('#hero-hand .card, #villain-hand .card, #duel-board .card')
-  .forEach(card => {
-    card.style.color = 'transparent';
-    card.style.borderColor = 'transparent';
+    .forEach(card => {
+      card.style.color = 'transparent';
+      card.style.borderColor = 'transparent';
 
-    const content = card.querySelector('.card-content');
-    if (content) {
-      content.style.color = 'transparent';
-      content.style.opacity = '0';
-    }
-  });
-
-
-  // ⚙️ Mostrar el panel de configuración pero desactivado visualmente
-  // 1. Desactivar selectores de cuenta atrás y memoria
-document.querySelectorAll('.selector').forEach(selector => {
-  selector.classList.add('config-disabled');
-  selector.querySelectorAll('button').forEach(btn => btn.disabled = true);
-});
-
-// 2. Desactivar zona de FL / TR / RV / HERO / OPP
-document.querySelectorAll('.zone-toggle-wrapper').forEach(wrapper => {
-  wrapper.classList.add('config-disabled');
-  wrapper.querySelectorAll('button').forEach(btn => btn.disabled = true);
-});
-
-// 3. Desactivar selector de colores de palos (RAINBOW, etc)
-document.querySelectorAll('.config-row-toggle[data-suitmode]').forEach(toggle => {
-  toggle.classList.add('config-disabled');
-  toggle.querySelectorAll('button').forEach(btn => btn.disabled = true);
-});
-
-// 4. Desactivar botones de modo de color de palos (RAINBOW / PAIR / MONO / RND)
-document.querySelectorAll('button[data-suitmode]').forEach(btn => {
-  btn.disabled = true;
-  btn.classList.add('config-disabled');
-});
-
-
+      const content = card.querySelector('.card-content');
+      if (content) {
+        content.style.color = 'transparent';
+        content.style.opacity = '0';
+      }
+    });
 
   // 🟥 SPLIT: mantener visible pero desactivado
   const splitBtn = document.querySelector('.split-btn');
@@ -104,7 +81,20 @@ document.querySelectorAll('button[data-suitmode]').forEach(btn => {
     heroBtn.style.display = 'inline-block';
     heroBtn.onclick = () => validateRankingAnswer('right');
   }
+
+  // 🔒 Desactivar todo el panel excepto la fila de modos de juego
+document.querySelectorAll('#screen-config .config-row:not(.game-mode-row)').forEach(row => {
+  row.classList.add('config-disabled');
+  row.querySelectorAll('button').forEach(btn => btn.disabled = true);
+});
+
+  // 🎮 Asegurar que los botones de cambio de modo sigan activos
+  document.querySelectorAll('.game-mode-row button').forEach(btn => {
+    btn.disabled = false;
+    btn.classList.remove('config-disabled');
+  });
 }
+
 
 function generateNewRankingDuel() {
   // Elegir dos jugadas distintas
