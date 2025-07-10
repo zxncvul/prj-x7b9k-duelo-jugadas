@@ -67,7 +67,7 @@ html, body {
   border-radius: 3px !important;
   color: #29a847 !important;
   font-family: 'GohuMono', monospace;
-  font-size: 13px !important;
+  font-size: 14px !important;
   width: 16rem !important;
   margin: 1rem auto 0 auto !important;
 }
@@ -121,19 +121,19 @@ html, body {
 
 .hand, .board {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   justify-content: center;
 }
 
 /* === CARTAS === */
 .card {
-  width: 2.8rem;
-  height: 3.8rem;
+  width: 3.2rem;
+  height: 4.2rem;
   border: 1px dashed #29a847;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 16px;
   color: #29a847;
   border-radius: 3px;
   background: #000;
@@ -195,7 +195,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.4rem;
 }
 
 /* === SPACER === */
@@ -209,8 +209,8 @@ html, body {
   border: 1px solid #29a847;
   color: #29a847;
   font-family: 'GohuMono', monospace;
-  font-size: 13px;
-  padding: 0.2rem 0.7rem;
+  font-size: 14px;
+  padding: 0.2rem 1.7rem;
   border-radius: 3px;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
@@ -229,7 +229,7 @@ html, body {
   color: #29a847;
   font-family: 'GohuMono', monospace;
   font-size: 14px;
-  padding: 0.2rem 0.5rem;
+  padding: 0.2rem 1.5rem;
   border-radius: 3px;
   cursor: pointer;
   min-width: 3.9rem;
@@ -253,7 +253,7 @@ html, body {
   padding: 0;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  
   min-width: 3.2rem;
   text-align: center;
   position: relative;
@@ -267,13 +267,13 @@ html, body {
 
 .reveal-btn[data-side="villain"] {
   top: 1.5rem;
-  left: 1.6rem !important;
+  left: 0rem !important;
   transform: scaleX(-1);
 }
 
 .reveal-btn[data-side="hero"] {
   top: 1.5rem;
-  left: -1.6rem;
+  left: 0rem;
 }
 
 /* === CONFIG ROWS & SELECTORS === */
@@ -281,7 +281,7 @@ html, body {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
-  gap: 0.3rem !important;
+  gap: 1.3rem !important;
   width: 100% !important;
   padding: 0 0.2rem !important;
   box-sizing: border-box !important;
@@ -305,7 +305,7 @@ html, body {
   display: flex !important;
   align-items: center !important;
   font-family: 'GohuMono', monospace !important;
-  gap: 0.1rem !important;
+  gap: 0.3rem !important;
   user-select: none !important;
 }
 
@@ -335,7 +335,7 @@ html, body {
   gap: 0rem !important;
   margin-left: 0.1rem !important;
   margin-right: 0.1rem !important;
-  margin-top: 1.5rem; /* antes en JS */
+  margin-top: 0.3rem; /* antes en JS */
 }
 
 
@@ -347,8 +347,8 @@ html, body {
 
 .zone-toggle-wrapper {
   display: flex;
-  gap: 0.12rem !important; /* ← Este es el valor que regula la separación */
-  margin-top: 1rem !important;
+  gap: 0rem !important; /* ← Este es el valor que regula la separación */
+  margin-top: 0rem !important;
 }
 
 
@@ -362,12 +362,12 @@ html, body {
   display: flex !important;
   align-items: center !important;
   gap: 0.4rem !important;
-  padding: 0.2rem 0.8rem !important;
+  padding: 0.2rem 1.2rem !important;
   border: 0px solid #29a847 !important;
   border-radius: 6px !important;
   cursor: pointer !important;
   background: transparent !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
   white-space: nowrap;
   flex-shrink: 0;
   font-family: 'GohuMono', monospace !important;
@@ -420,7 +420,7 @@ html, body {
   color: #fff;
   padding: 1em 2em;
   border-radius: 5px;
-  font-size: 1.2em;
+  font-size: 14px;
   z-index: 9999;
 }
 
@@ -430,7 +430,7 @@ html, body {
 }
 
 .game-mode-row {
-  margin-top: 1.5rem;
+  margin-top: 0.4rem;
   justify-content: center;
   gap: 0rem !important;
 }
@@ -524,7 +524,7 @@ html, body {
 /* Centro "U VS" */
 .vs-label {
   color: #ff2e2e;
-  font-size: 1.1rem;
+  font-size: 14px;
   font-family: 'GohuMono', monospace;
   min-width: 4.5rem;
   text-align: center;
@@ -541,7 +541,7 @@ html, body {
 
 .identify-buttons {
   position: absolute;
-  top: 190%; /* debajo del board */
+  top: 160%; /* debajo del board */
    left: 50%;
   transform: translateX(-50%); /* ✔️ centrado absoluto */
   right: 0;
@@ -550,16 +550,16 @@ html, body {
 
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* columnas iguales */
-  gap: 0.7rem 0.5rem;
-  padding: 0.4rem 0.4rem;
+  gap: 0.9rem 0.8rem;
+  padding: 0.4rem 0.8rem;
 
   background: transparent; /* sin fondo visible */
   border: none;            /* ❌ sin borde */
   border-radius: 0;
   box-sizing: border-box;
 
-  width: 108%; /* ocupa el ancho del wrapper */
-  max-width: 30rem;;
+  width: 118%; /* ocupa el ancho del wrapper */
+  max-width: 50rem;;
 }
 
 
@@ -669,3 +669,7 @@ html.fade-out::before {
 }
 
 
+.card.error {
+  border: 1px solid #ff2a2a !important;
+  color: #ff2a2a !important;
+}
