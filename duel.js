@@ -69,7 +69,18 @@ export function guessWinner(choice) {
   if (isCorrect) {
     document.dispatchEvent(new Event('duel:end'));
     setTimeout(generateDuel, 1500);
+  } else {
+  // ❌ Marcar en rojo las cartas ganadoras y perdedoras
+  const winnerCards = bestHands[currentDuelWinner]?.cards || [];
+  const all = document.querySelectorAll('.card');
+
+  // Remarcar solo las cartas que forman parte de la jugada
+  for (const code of winnerCards) {
+    const match = Array.from(all).find(el => el.dataset.card === code);
+    if (match) match.classList.add('error');
   }
+}
+
 }
 
 
